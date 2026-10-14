@@ -2,10 +2,9 @@ from funciones1 import *
 
 def programa():
 
-    numero = 30
-    legajo = [0] * numero
-    nombres = [0] * numero
-    genero = [0] * numero
+    legajo = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    nombres = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    genero = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     primer_parcial = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     segundo_parcial = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     promedios = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -39,17 +38,13 @@ def programa():
             match opcion:
 
                 case 1:
-                    agregar_elementos_lista(lista=legajo, var="legajo", tipo_validacion="numero")
-                    validar_cadena(lista=legajo)
-                    agregar_elementos_lista(lista=nombres, var="nombre y apellido", tipo_validacion="nombre")
-                    agregar_elementos_lista(lista=genero, var="genero(F/M/X)", tipo_validacion="genero")
-                    agregar_elementos_lista(lista=primer_parcial, var="primera nota del parcial", tipo_validacion="nota")
-                    agregar_elementos_lista(lista=segundo_parcial, var="segunda nota del parcial", tipo_validacion="nota")
+                    agregar_elementos_lista(lista_legajo=legajo, lista_nombre_apellido=nombres, lista_genero=genero, lista_primer_nota=primer_parcial, lista_segunda_nota=segundo_parcial)
                     bandera = True
                 case 2:
                     mostrar_todos_alumnos(legajo=legajo, nombre_apellido=nombres, genero=genero, primer_nota=primer_parcial, segunda_nota=segundo_parcial, promedio=promedios)
                 case 3:
                     calcular_promedio(primer_n=primer_parcial, segunda_n=segundo_parcial, promedio=promedios)
+                    mostrar_todos_alumnos(legajo=legajo, nombre_apellido=nombres, genero=genero, primer_nota=primer_parcial, segunda_nota=segundo_parcial, promedio=promedios)
                 case 4:
                     ordenamiento_burbuja(legajo=legajo, nombre_apellido=nombres, genero=genero, primer_nota=primer_parcial, segunda_nota=segundo_parcial, promedio=promedios, orden="DES")
                     mostrar_todos_alumnos(legajo=legajo, nombre_apellido=nombres, genero=genero, primer_nota=primer_parcial, segunda_nota=segundo_parcial, promedio=promedios)
@@ -60,4 +55,3 @@ def programa():
                 case 7:
                     print("Saliendo del programa, gracias por pasarse!!!")
                     corriendo = False
-

@@ -1,4 +1,4 @@
-def agregar_elementos_lista(lista: list, var: str, tipo_validacion: str):
+def agregar_elementos_lista(lista_legajo: list, lista_nombre_apellido: list, lista_genero: list, lista_primer_nota: list, lista_segunda_nota: list):
     """ Esta funcion agrega los valores ingresados por el cliente a las listas ya creadas en el sistema
         valida cada dato ingresado mediante el parametro de tipo de validacion correspondiente y en caso
         de que haya un valor mal ingresado, corrobora que ingrese nuevamente dicho dato. En el caso que
@@ -10,25 +10,59 @@ def agregar_elementos_lista(lista: list, var: str, tipo_validacion: str):
         tipo_validacion (str): El tipo de validacion que necesitamos usar para las listas.
     """
 
-    for i in range(len(lista)):
-        numero1 = input(f"Ingrese el valor a agregar a la lista {var}: ")
-        validador = False
+    for i in range(len(lista_legajo)):
+        print(f"Ingrese los datos del alumno N°{i + 1}")
+        bandera = True
 
-        while not validador:
-            if (tipo_validacion == "numero"):
-                validador = validar_numero(numero1)
-            elif (tipo_validacion == "nombre"):
-                validador = validar_nombre(numero1)
-            elif (tipo_validacion == "genero"):
-                validador = validar_genero(numero1)
-            elif (tipo_validacion == "nota"):
-                validador = validar_numero_1_al_10(numero1)
+        while bandera:
+            legajo = input("Ingrese el numero de legajo: ")
 
-            if not validador:
+            if not validar_numero(legajo):
                 print("Valor no admitido.")
-                numero1 = input(f"Ingrese el valor a agregar a la lista {var}, otra vez: ")
+            else:
+                bandera2 = True
 
-        lista[i] = numero1
+                for j in range(i):
+                    if lista_legajo[j] == legajo:
+                        bandera2 = False
+                        break
+
+                if not bandera2:
+                    print("El numero de legajo ya existe.")
+                else:
+                    bandera = False
+                
+
+        lista_legajo[i] = legajo
+
+        nombre_apellido = input("Ingrese el nombre y apellido: ")
+        while not validar_nombre(nombre_apellido):
+            print("Valor no admitido.")
+            nombre_apellido = input("Ingrese el nombre y apellido: ")
+
+        lista_nombre_apellido[i] = nombre_apellido
+
+        genero = input("Ingrese el genero del alumno: ")
+        while not validar_genero(genero):
+            print("Valor no admitido.")
+            genero = input("Ingrese el genero del alumno: ")
+
+        lista_genero[i] = genero
+
+        primer_n = input("Ingrese la primera nota: ")
+        while not validar_numero_1_al_10(primer_n):
+            print("Valor no admitido.")
+            primer_n = input("Ingrese la primera nota: ")
+
+        lista_primer_nota[i] = primer_n
+
+        segunda_n = input("Ingrese la segunda nota: ")
+
+        while not validar_numero_1_al_10(segunda_n):
+            print("Valor no admitido.")
+            segunda_n = input("Ingrese la segunda nota: ")
+
+        lista_segunda_nota[i] = segunda_n
 
 def validar_numero (valor: str)-> bool:
     """Esta funcion valida si es un numero entero o no.
@@ -179,7 +213,7 @@ def mostrar_alumno(legajo: list, nombre_apellido: list, genero: list, primer_not
         segunda_nota (list): Lista de las segundas notas
         promedio (list): Lista de los promedios
     """
-    print(f"{legajo}\t{nombre_apellido}  \t{genero}\t{primer_nota}\t{segunda_nota}\t{promedio:.2f}")
+    print(f"{legajo}\t{nombre_apellido}\t\t{genero}\t{primer_nota}\t\t{segunda_nota}\t\t{promedio:.2f}")
 
 def calcular_promedio(primer_n: list, segunda_n: list, promedio: list):
     """Esta funcion toma como parametros 2 listas de la primer y segunda nota y hace el promedio.
@@ -294,12 +328,17 @@ def buscar_por_legajo(legajo: list, nombre_apellido: list, genero: list, primer_
         promedio (list): Lista de los promedios
     """
     numero = input("Ingrese el numero de legajo a buscar: ")
-    validar_numero(numero)
+
+    while not validar_numero(numero):
+        print("El valor que ingreso es incorrecto.")
+        numero = input("Ingrese el numero de legajo a buscar: ")
+
     num_val = int(numero)
     flag = False
 
     for j in range(len(legajo)):
         if (int(legajo[j])) == num_val:
+            print("Legajo\tNombre y Apellido\tGenero\tPrimer Nota\tSegunda Nota\tPromedio")
             mostrar_alumno(legajo=legajo[j], nombre_apellido=nombre_apellido[j], genero=genero[j], primer_nota=primer_nota[j], segunda_nota=segunda_nota[j], promedio=promedio[j])
             flag = True
             break
