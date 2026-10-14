@@ -1,13 +1,15 @@
 def agregar_elementos_lista(lista_legajo: list, lista_nombre_apellido: list, lista_genero: list, lista_primer_nota: list, lista_segunda_nota: list):
-    """ Esta funcion agrega los valores ingresados por el cliente a las listas ya creadas en el sistema
-        valida cada dato ingresado mediante el parametro de tipo de validacion correspondiente y en caso
-        de que haya un valor mal ingresado, corrobora que ingrese nuevamente dicho dato. En el caso que
-        este todo ok, lo guardamos.
+    """Esta funcion agrega los valores ingresados por el cliente a las listas ya creadas en el sistema
+       valida cada dato ingresado mediante el parametro de tipo de validacion correspondiente y en caso
+       de que haya un valor mal ingresado, corrobora que ingrese nuevamente dicho dato. En el caso que
+       este todo ok, lo guardamos.
 
     Args:
-        lista (list): La lista a la cual agregaremos los datos.
-        var (str): El nombre de la lista.
-        tipo_validacion (str): El tipo de validacion que necesitamos usar para las listas.
+        lista_legajo (list): Es la lista de legajos
+        lista_nombre_apellido (list): Es la lista de nombres y apellidos
+        lista_genero (list): Es la lista de generos
+        lista_primer_nota (list): Es la lista de las primeras notas
+        lista_segunda_nota (list): Es la lista de las segundas notas
     """
 
     for i in range(len(lista_legajo)):
@@ -105,23 +107,6 @@ def validar_nombre (valor: str)-> bool:
                 retorno = False
                 break
 
-    return retorno
-
-def validar_cadena(lista: list)-> bool:
-    """Esta funcion valida la cadena completa en el caso que sean mas de 2 digitos.
-
-    Args:
-        lista (list): La lista que recorrera para validar posteriormente.
-
-    Returns:
-        bool: Retornara un valor booleano.
-    """
-    retorno = True
-    for i in range(len(lista)):
-        hola = validar_numero(lista[i])
-        if (hola == False):
-            retorno = False
-            break
     return retorno
 
 def validar_genero (valor: str)-> bool:
